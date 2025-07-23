@@ -148,7 +148,7 @@
 
       setTimeout(() => {
         const chance = Math.floor(Math.random() * (90 - 65 + 1)) + 65;
-        const spins = Math.floor(Math.random() * (85 - 40 + 1)) + 40;
+        const spins = Math.floor(Math.random() * (85 - 30 + 1)) + 30;
         predictionText.innerHTML = `<span>ШАНС ${chance}%</span><span>ЧЕРЕЗ ${spins} СПИНОВ</span>`;
         loadingText.style.display = 'none';
         analyzeBtn.disabled = false;

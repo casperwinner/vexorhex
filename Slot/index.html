@@ -1,20 +1,44 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Casper Soft</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-    body {      background: linear-gradient(to bottom, #990099 0%, #cc66ff 100%);
- color: #fff; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-    .container { width: 360px; background: #1a1a1a; border-radius: 20px; padding: 20px; box-shadow: 0 0 20px rgba(0,255,0,0.1); text-align: center; }
-    h1 { font-size: 22px; margin-bottom: 5px; }
-    .highlight { color: #00ff66; }
-    .beta-label { opacity: 0.5; font-weight: bold; margin-bottom: 15px; }
-    .slot-select {
-      width: 100%; padding: 10px; font-size: 15px; border-radius: 10px; margin-bottom: 20px;
-      border: none; background: #222; color: #fff;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom, #990099 0%, #cc66ff 100%);
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 360px;
+      background: #1a1a1a;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 0 20px rgba(0,255,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .highlight {
+      color: #00ff66;
+    }
+    .beta-label {
+      opacity: 0.5;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
     .prediction-box {
       position: relative;
@@ -28,6 +52,7 @@
       justify-content: center;
       cursor: pointer;
       background: #222;
+      margin-top: 12px;
     }
     .prediction-img {
       position: absolute;
@@ -47,7 +72,9 @@
       gap: 5px;
       text-align: center;
     }
-    .upload-hidden { display: none; }
+    .upload-hidden {
+      display: none;
+    }
     button {
       width: 100%;
       padding: 12px;
@@ -58,38 +85,30 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: bold;
-      margin-top: 12px;
+      margin-top: 14px;
       transition: 0.2s;
     }
-    button:hover { background: #00cc55; }
-    .loading { color: #00ff66; font-weight: bold; margin-top: 10px; }
+    button:hover {
+      background: #00cc55;
+    }
+    .loading {
+      color: #00ff66;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
     .back-button {
       background: transparent;
       border: 2px solid #555;
       color: #999;
-      margin-top: 10px;
+      margin-top: 16px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1><span class="highlight">MaxWIN</span> Radar</h1>
+    <h1><span class="highlight">BONUS</span> Radar</h1>
     <div class="beta-label">@casper_soft_bot</div>
-
-    <select id="slotSelect" class="slot-select">
-      <option disabled selected>*выберите игру</option>
-      <option>Sweet Bonanza 1000</option>
-      <option>Gates of Olympus</option>
-      <option>Fruit Party</option>
-      <option>Sugar Rush</option>
-      <option>Starlight Princess</option>
-      <option>Bonanza Billion</option>
-      <option>Santa's Great Gifts</option>
-      <option>The Dog House</option>
-      <option>Wanted Dead or a Wild</option>
-      <option>5 Lions Megaways</option>
-      <option>* Другое / Other *</option>       
-    </select>
 
     <input type="file" id="screenshotUpload" class="upload-hidden" accept="image/*">
 
@@ -115,7 +134,6 @@
     const loadingText = document.getElementById('loadingText');
     const analyzeBtn = document.getElementById('analyzeBtn');
     const againBtn = document.getElementById('againBtn');
-    const slotSelect = document.getElementById('slotSelect');
 
     function triggerUpload() {
       screenshotUpload.click();
@@ -128,7 +146,7 @@
         reader.onload = function(e) {
           predictionImage.src = e.target.result;
           predictionImage.style.display = 'block';
-          predictionText.innerHTML = '<span style="color:#ccc">Нажмите \"Анализ\"</span>';
+          predictionText.innerHTML = '<span style="color:#ccc">Нажмите "Анализ"</span>';
           analyzeBtn.style.display = 'block';
           againBtn.style.display = 'none';
         };
@@ -137,8 +155,8 @@
     });
 
     function runFakeAnalysis() {
-      if (!screenshotUpload.files.length || slotSelect.selectedIndex === 0) {
-        alert('Пожалуйста, выберите игру и загрузите скриншот.');
+      if (!screenshotUpload.files.length) {
+        alert('Пожалуйста, загрузите скриншот.');
         return;
       }
 
@@ -165,12 +183,9 @@
       loadingText.style.display = 'none';
       analyzeBtn.style.display = 'none';
       againBtn.style.display = 'none';
-      slotSelect.selectedIndex = 0;
-    }
-
-    function goBack() {
-      window.location.href = 'https://example.com'; // Замените ссылку на свою
     }
   </script>
 </body>
 </html>
+
+

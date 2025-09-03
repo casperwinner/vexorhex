@@ -925,6 +925,13 @@
                 <button id="game21-button" onclick="openGame('slot')">Open</button>
             </div>
         </div>
+        <div class="game">
+            <img src="tower.jpg" alt="Tower Preview">
+            <div class="game-info">
+                <h3 id="game22-title">Tower Rush</h3>
+                <button id="game22-button" onclick="openGame('tower')">Open</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -997,6 +1004,8 @@ const translations = {
         game20Button: "Open",
         game21Title: "Bonus Radar",
         game21Button: "Open",
+        game22Title: "Tower Rush",
+        game22Button: "Open",
         gameButton: "Open",
         telegramButton: "Go to telegram (RU)",
         telegramButton2: "Go to telegram (EN)"
@@ -1047,6 +1056,8 @@ const translations = {
         game20Button: "Открыть",
         game21Title: "Bonus Radar",
         game21Button: "Открыть",
+        game22Title: "Tower Rush",
+        game22Button: "Открыть",
         gameButton: "Открыть",
         telegramButton: "Перейти в телеграм (RU)",
         telegramButton2: "Перейти в телеграм (EN)"
@@ -1097,6 +1108,8 @@ const translations = {
         game20Button: "खोलें",
         game21Title: "Bonus Radar",
         game21Button: "खोलें",
+        game22Title: "Tower Rush",
+        game22Button: "खोलें",
         gameButton: "खोलें",
         telegramButton: "टेलीग्राम पर जाएं (RU)",
         telegramButton2: "टेलीग्राम पर जाएं (EN)"
@@ -1147,6 +1160,8 @@ const translations = {
         game20Button: "Abrir",
         game21Title: "Bonus Radar",
         game21Button: "Abrir",
+        game22Title: "Tower Rush",
+        game22Button: "Abrir",
         gameButton: "Abrir",
         telegramButton: "Ir para o telegram (RU)",
         telegramButton2: "Ir para o telegram (EN)"
@@ -1197,6 +1212,8 @@ const translations = {
         game20Button: "Abrir",
         game21Title: "Bonus Radar",
         game21Button: "Abrir",
+        game22Title: "Tower Rush",
+        game22Button: "Abrir",
         gameButton: "Abrir",
         telegramButton: "Ir a telegram (RU)",
         telegramButton2: "Ir a telegram (EN)"
@@ -1247,6 +1264,8 @@ const translations = {
         game20Button: "Ochish",
         game21Title: "Bonus Radar",
         game21Button: "Ochish",
+        game22Title: "Tower Rush",
+        game22Button: "Ochish",
         gameButton: "Ochish",
         telegramButton: "Telegramga o'tish (RU)",
         telegramButton2: "Telegramga o'tish (EN)"
@@ -1297,6 +1316,8 @@ const translations = {
         game20Button: "Aç",
         game21Title: "Bonus Radar",
         game21Button: "Aç",
+        game22Title: "Tower Rush",
+        game22Button: "Aç",
         gameButton: "Aç",
         telegramButton: "Telegrama keç (RU)",
         telegramButton2: "Telegrama keç (EN)"
@@ -1347,6 +1368,8 @@ const translations = {
         game20Button: "Aç",
         game21Title: "Bonus Radar",
         game21Button: "Aç",
+        game22Title: "Tower Rush",
+        game22Button: "Aç",
         gameButton: "Aç",
         telegramButton: "Telegram'a git (RU)",
         telegramButton2: "Telegram'a git (EN)"
@@ -1397,6 +1420,8 @@ const translations = {
         game20Button: "Abrir",
         game21Title: "Bonus Radar",
         game21Button: "Abrir",
+        game22Title: "Tower Rush",
+        game22Button: "Abrir",
         gameButton: "Abrir",
         telegramButton: "Ir para o telegram (RU)",
         telegramButton2: "Ir para o telegram (EN)"
@@ -1447,6 +1472,8 @@ const translations = {
         game20Button: "فتح",
         game21Title: "Bonus Radar",
         game21Button: "فتح",
+        game22Title: "Tower Rush",
+        game22Button: "فتح",
         gameButton: "فتح",
         telegramButton: "انتقل إلى تلغرام (RU)",
         telegramButton2: "انتقل إلى تلغرام (EN)"
@@ -1935,6 +1962,10 @@ function openGame(game) {
         slot: {
             ios: 'slot/index.html',
             other: 'slot/index.html'
+        },
+        tower: {
+            ios: 'tower/index.html',
+            other: 'tower/index.html'
         }
     };
             var url = isIOS ? links[game].ios : links[game].other;

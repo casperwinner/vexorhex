@@ -741,40 +741,184 @@
 
 
 
+<!-- ========== СЕКЦИЯ Contact ========== -->
 <div id="Contact" class="tabcontent">
-    <div class="image-container">
-        <h2 class="title" id="game-picker-title">GAME PICKER</h2>
-        <img src="secret.png" alt="Secret Image">
+  <div class="contact-right">
+    <div class="status-card">
+      <div class="online-row">
+        <div class="online-container">
+          <div class="label">Online</div>
+          <div class="pulse" aria-hidden="true"></div>
+          <div class="count" id="onlineCount">—</div>
+        </div>
+        <div class="connected">Connected</div>
+      </div>
     </div>
-    <p id="device-output" class="device-info">Device not detected</p>
-    <button onclick="detectDevice()" class="detect-button" id="detect-button">Detect device</button>
-    <button onclick="startGame()" class="start-button" id="start-button">Start</button>
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <button class="close-button" onclick="closeModal()">&times;</button>
-            <h2 style="text-align: center;">Instruction</h2>
-            <div class="carousel">
-                <div class="slides" style="width: 200%; transition: transform 0.5s ease;">
-                    <div class="slide" style="width: 50%; float: left;"><img src="inst1.png" alt="Instruction 1"></div>
-                    <div class="slide" style="width: 50%; float: left;"><img src="inst2.png" alt="Instruction 2"></div>
-                </div>
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                <div class="dots-container">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                </div>
-            </div>
-        </div>
+    <div class="ticker-card">
+      <div class="ticker-header">Выигрыши в реальном времени | Real-time winnings</div>
+      <div class="ticker-body" id="tickerBody" role="list" aria-live="polite"></div>
     </div>
-    
-    <div id="miniModal" class="modal-mini">
-        <div class="modal-content-mini">
-            <button class="close-button-mini" onclick="closeMiniModal()">&times;</button>
-        </div>
-    </div>
+  </div>
 </div>
+
+<style>
+#Contact { box-sizing: border-box; padding: 16px; }
+
+/* Online panel */
+#Contact .status-card {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg,#0f1a2a,#0b1321);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+#Contact .online-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#Contact .online-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(34,197,94,0.08);
+  font-weight: 700;
+}
+#Contact .pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #16c47f;
+  animation: contactPulse 1.6s ease-out infinite;
+}
+@keyframes contactPulse {
+  0% {transform:scale(0.6);opacity:0.9}
+  80% {transform:scale(1.9);opacity:0}
+  100% {opacity:0}
+}
+#Contact .count { font-weight: 800; font-size: 16px; color: #dff7ea; }
+#Contact .connected { color: #9bd1b4; font-weight: 600; }
+
+/* Ticker */
+#Contact .ticker-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(#0e1828,#0b1321);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+#Contact .ticker-header {
+  padding: 12px 14px;
+  font-weight: 700;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+#Contact .ticker-body {
+  max-height: 500px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+#Contact .ticker-body .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  font-size: 15px;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all .35s ease;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+  gap: 12px;
+  border-radius: 6px;
+}
+#Contact .ticker-body .row.show { opacity: 1; transform: translateY(0); }
+#Contact .ticker-body .row:nth-child(odd) { background: rgba(255,255,255,0.03); }
+#Contact .ticker-body .id {
+  color: #e0e7f1;
+  font-weight: 500;
+  flex: unset;
+}
+#Contact .ticker-body .win {
+  color: #22c55e;
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: 15px;
+  text-align: right;
+  flex-shrink: 0;
+  margin-right: 25px; /* добавляем отступ от правого края */
+}
+</style>
+
+<script>
+(function initContact(){
+  const onlineEl = document.getElementById('onlineCount');
+  if(onlineEl){
+    let currentOnline = Math.floor(15 + Math.random()*69);
+    let targetOnline = currentOnline;
+    function updateTarget(){
+      targetOnline = currentOnline + Math.floor(Math.random()*11 - 5);
+      if(targetOnline < 65) targetOnline = 65;
+      if(targetOnline > 400) targetOnline = 400;
+    }
+    setInterval(updateTarget, 12000 + Math.random()*2500);
+    setInterval(() => {
+      if(currentOnline < targetOnline) currentOnline++;
+      else if(currentOnline > targetOnline) currentOnline--;
+      onlineEl.textContent = currentOnline;
+    }, 700);
+  }
+
+  const tickerBody = document.getElementById('tickerBody');
+  if(!tickerBody) return;
+
+  function randInt(min,max){ return Math.floor(Math.random()*(max-min+1)) + min; }
+  function formatMoney(v){
+    let p = v.toFixed(2).split('.');
+    return p[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ') + ',' + p[1];
+  }
+
+  function generateRow(){
+    const idVisible = randInt(1000,9999);
+    const idMasked = 'ID ' + idVisible + '****';
+    const isRub = Math.random() < 0.5;
+    let amount, text;
+    if(isRub){ amount = randInt(350,25000) + Math.random(); text = formatMoney(amount) + ' ₽'; }
+    else { amount = randInt(21,220) + Math.random(); text = formatMoney(amount) + ' $'; }
+    return { idMasked, text };
+  }
+
+  function addRow(){
+    const rowData = generateRow();
+    const row = document.createElement('div');
+    row.className = 'row';
+    const idDiv = document.createElement('div'); idDiv.className = 'id'; idDiv.textContent = rowData.idMasked;
+    const winDiv = document.createElement('div'); winDiv.className = 'win'; winDiv.textContent = rowData.text;
+    row.append(idDiv, winDiv);
+    tickerBody.prepend(row);
+    setTimeout(()=> row.classList.add('show'), 30);
+
+    const rows = tickerBody.querySelectorAll('.row');
+    if(rows.length > 10){
+      const last = rows[rows.length - 1];
+      last.classList.remove('show');
+      last.addEventListener('transitionend', () => last.remove(), { once: true });
+    }
+  }
+
+  // стартовые 10 строк
+  for(let i=0;i<10;i++) addRow();
+
+  (function scheduleNext(){
+    const delay = 13000 + Math.random()*3000;
+    setTimeout(()=>{ addRow(); scheduleNext(); }, delay);
+  })();
+})();
+</script>
+
 
 <div id="Games" class="tabcontent active">
     <div class="row">
@@ -1982,3 +2126,4 @@ function openGame(game) {
     </script>
 </body>
 </html>
+

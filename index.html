@@ -1664,7 +1664,8 @@ function changeLanguage(lang) {
 
 // Инициализация языка по умолчанию
 document.addEventListener('DOMContentLoaded', function() {
-    changeLanguage('en');
+    const saved = localStorage.getItem('siteLang') || 'en';
+    changeLanguage(saved);
 });
 
 

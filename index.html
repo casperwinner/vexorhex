@@ -886,8 +886,8 @@
     const idMasked = 'ID ' + idVisible + '****';
     const isRub = Math.random() < 0.5;
     let amount, text;
-    if(isRub){ amount = randInt(350,25000) + Math.random(); text = formatMoney(amount) + ' ₽'; }
-    else { amount = randInt(21,220) + Math.random(); text = formatMoney(amount) + ' $'; }
+    if(isRub){ amount = randInt(330,24000) + Math.random(); text = formatMoney(amount) + ' ₽'; }
+    else { amount = randInt(17,220) + Math.random(); text = formatMoney(amount) + ' $'; }
     return { idMasked, text };
   }
 
@@ -1664,8 +1664,7 @@ function changeLanguage(lang) {
 
 // Инициализация языка по умолчанию
 document.addEventListener('DOMContentLoaded', function() {
-    const saved = localStorage.getItem('siteLang') || 'en';
-    changeLanguage(saved);
+    changeLanguage('en');
 });
 
 
@@ -2127,4 +2126,3 @@ function openGame(game) {
     </script>
 </body>
 </html>
-

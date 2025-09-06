@@ -857,14 +857,21 @@
 (function initContact(){
   const onlineEl = document.getElementById('onlineCount');
   if(onlineEl){
-    let currentOnline = Math.floor(15 + Math.random()*69);
+    // стартовое значение от 15 до 69
+    let currentOnline = Math.floor(15 + Math.random() * 55); 
     let targetOnline = currentOnline;
+
     function updateTarget(){
-      targetOnline = currentOnline + Math.floor(Math.random()*11 - 5);
-      if(targetOnline < 65) targetOnline = 65;
-      if(targetOnline > 400) targetOnline = 400;
+      // гуляем строго +-5 от текущего
+      targetOnline = currentOnline + Math.floor(Math.random() * 11 - 5);
+
+      // не выходим за пределы 15–69
+      if(targetOnline < 15) targetOnline = 15;
+      if(targetOnline > 69) targetOnline = 69;
     }
-    setInterval(updateTarget, 12000 + Math.random()*2500);
+
+    setInterval(updateTarget, 12000 + Math.random() * 2500);
+
     setInterval(() => {
       if(currentOnline < targetOnline) currentOnline++;
       else if(currentOnline > targetOnline) currentOnline--;
